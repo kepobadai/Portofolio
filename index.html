@@ -2921,105 +2921,93 @@ document
 
 
 /* =========================================================
-   CERTIFICATE DATA
+   CERTIFICATE DATA — TOTAL 18 SERTIFIKAT
 ========================================================= */
 
 const certs = [
-
   [
     "Seminar Keagamaan 2024",
     "144ExrPwpl_t4p6x0fjnUN74mj0NzqM0C"
   ],
-
   [
     "ICETS 2024",
     "1dBMrPzSNUE-Hdl065_UFsfh9nqa8J_s_"
   ],
-
   [
     "Master Of Ceremony",
     "11v5TO6kqs9O2w1Y_cYixWmANmggqQw5f"
   ],
-
   [
     "Ketua Panitia",
     "1byV1uuy-vv7d1Qo8dushQ4q7N6VjvmCr"
   ],
-
   [
     "Tular Nalar",
     "1d-0iW8mFu5kbNJtek-b1Aw48knesWElJ"
   ],
-
   [
     "PDD 2024",
     "183yxqGneucqW-9ej30ReljJQoZpSxMwq"
   ],
-
   [
     "PDD 2025",
     "1Cxu7EGhyO0HXdKStozWEC6qC2QPNva4k"
   ],
-
   [
     "Puskasnas",
     "1RKVNSDExehYSdk_seP8JljFD_IRdkG-X"
   ],
-
   [
     "Kajian ITAF",
     "13tQKf1KS6NWPaMveofVMiUyuerkgY8St"
   ],
-
   [
     "Seminar Keagamaan 2026",
     "1wF5OpdTUC-bHX2wAVgKZ00iMW3RyrrGW"
   ],
-
   [
     "Seminar Elektro 2024",
     "12pwQ0ZwDur9WvnN2USsP_gnodcsXh7Eq"
   ],
-
   [
     "Seminar Elektro 2025",
     "1olDsRBRBoqWm_TX0eNtFTC13OxCWja6k"
   ],
-
   [
     "Dauroh Al-Quds",
     "1mEGQuthbCktQKnnhEGSlQIiYr2uqkovI"
   ],
-
   [
     "PKKMB Universitas Pamulang",
     "14jQ9X89pwbsT0kIO8t2J1uR9mbofyHi4"
   ],
-
   [
     "ISET 2023",
     "1whZirLUVixuhK2gHVeUyGTyQDtTWQAVU"
   ],
-
   [
     "SENATEK 2025",
     "1omcTfWUTt8dhmGmf8V93aI5ny3-5ZhYB"
   ],
-
   [
     "NSSC 7",
     "1vW3MdvnIU-bhFOMuGnM9PTZc6pDaRWPh"
+  ],
+  [
+    "PKU MUI VII",
+    "1Sd_YxbZ1DO38Mb7Vp5LTF5Qi6Emqpb7V"
   ]
-
 ];
 
+/* =========================================================
+   GENERATE CERTIFICATE CARDS
+========================================================= */
 
 const certGrid =
   document.getElementById("certGrid");
 
-
 certs.forEach(
-  (item,index)=>{
+  (item, index) => {
 
     const title =
       item[0];
@@ -3039,13 +3027,12 @@ certs.forEach(
     card.className =
       "cert interactive-card reveal " +
       (
-        index%2===0
-        ? "fade-left"
-        : "fade-right"
+        index % 2 === 0
+          ? "fade-left"
+          : "fade-right"
       );
 
     card.innerHTML = `
-
       <div
         class="cert-preview"
         data-url="${viewURL}">
@@ -3076,14 +3063,11 @@ certs.forEach(
         </a>
 
       </div>
-
     `;
 
     certGrid.appendChild(card);
-
   }
 );
-
 
 /* =========================================================
    CERTIFICATE CLICK
@@ -3091,12 +3075,12 @@ certs.forEach(
 
 document.addEventListener(
   "click",
-  e=>{
+  e => {
 
     const preview =
       e.target.closest(".cert-preview");
 
-    if(preview){
+    if (preview) {
 
       const url =
         preview.dataset.url;
@@ -3107,10 +3091,8 @@ document.addEventListener(
       );
 
     }
-
   }
 );
-
 
 /* =========================================================
    MOBILE MENU
