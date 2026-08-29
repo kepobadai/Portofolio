@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -407,6 +408,7 @@ nav a.active::after{
 
 .social a:hover{
   background:var(--blue);
+
   transform:
     translateY(-7px)
     rotate(8deg)
@@ -752,6 +754,10 @@ nav a.active::after{
 .dark{
   background:var(--navy);
   color:#fff;
+}
+
+.dark .section-title h2 i{
+  color:var(--yellow);
 }
 
 .skills-grid{
@@ -1707,7 +1713,7 @@ footer{
       Mus'ab<span>.</span>
     </a>
 
-    <button class="menu" id="menu">
+    <button class="menu" id="menu" aria-label="Menu">
       <i class="fa-solid fa-bars"></i>
     </button>
 
@@ -1771,19 +1777,22 @@ footer{
 
         <a href="https://www.instagram.com/sdq22.05/"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer"
+           aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
 
         <a href="https://www.linkedin.com/in/musab-arifu-sidqi/"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer"
+           aria-label="LinkedIn">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
 
         <a href="https://youtube.com/@kepobadai0225"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer"
+           aria-label="YouTube">
           <i class="fa-brands fa-youtube"></i>
         </a>
 
@@ -1791,10 +1800,6 @@ footer{
 
     </div>
 
-
-    <!-- =====================================================
-         FOTO UTAMA HERO — SUDAH DIGANTI
-    ====================================================== -->
 
     <div class="profile-wrap reveal zoom-in">
 
@@ -2030,7 +2035,7 @@ footer{
             <a
               href="https://alfatahmaos.sch.id/"
               target="_blank"
-              rel="noopener">
+              rel="noopener noreferrer">
 
               MTs PP Al-Fatah Maos
 
@@ -2068,7 +2073,7 @@ footer{
             <a
               href="https://alfatahmaos.sch.id/"
               target="_blank"
-              rel="noopener">
+              rel="noopener noreferrer">
 
               MA PP Al-Fatah Maos
 
@@ -2107,7 +2112,7 @@ footer{
             <a
               href="https://unpam.ac.id/"
               target="_blank"
-              rel="noopener">
+              rel="noopener noreferrer">
 
               Universitas Pamulang
 
@@ -2177,7 +2182,7 @@ footer{
           <a
             href="https://kamiindonesia.com/"
             target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
 
             KAMI Indonesia
 
@@ -2260,7 +2265,7 @@ footer{
           <a
             href="https://yayasanmatain.org/"
             target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
 
             <i class="fa-solid fa-hand-holding-heart"></i>
             MATAIN
@@ -2271,7 +2276,7 @@ footer{
           <a
             href="https://lkk.unpam.ac.id/"
             target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
 
             <i class="fa-solid fa-building"></i>
             LKK UNPAM
@@ -2282,7 +2287,7 @@ footer{
           <a
             href="https://www.google.com/search?q=Ukhuwah+Al-Fatah+Rescue"
             target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
 
             <i class="fa-brands fa-google"></i>
             Al-Fatah Rescue
@@ -2551,7 +2556,8 @@ footer{
 
 <button
   class="top"
-  id="top">
+  id="top"
+  aria-label="Kembali ke atas">
 
   <i class="fa-solid fa-angle-up"></i>
 
@@ -2564,11 +2570,8 @@ footer{
    PARTICLE ENGINE
 ========================================================= */
 
-const canvas =
-  document.getElementById("particleCanvas");
-
-const ctx =
-  canvas.getContext("2d");
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
 
 let particles = [];
 
@@ -2578,22 +2581,14 @@ let mouse = {
   active:false
 };
 
-let width =
-  window.innerWidth;
-
-let height =
-  window.innerHeight;
+let width = window.innerWidth;
+let height = window.innerHeight;
 
 
 function resizeCanvas(){
 
-  width =
-    canvas.width =
-    window.innerWidth;
-
-  height =
-    canvas.height =
-    window.innerHeight;
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
 
   createParticles();
 
@@ -2611,19 +2606,21 @@ function createParticles(){
 
   for(let i=0;i<amount;i++){
 
+    const base =
+      Math.random() * 2.3 + .7;
+
     particles.push({
 
-      x:Math.random()*width,
-      y:Math.random()*height,
+      x:Math.random() * width,
+      y:Math.random() * height,
 
-      vx:(Math.random()-.5)*.45,
-      vy:(Math.random()-.5)*.45,
+      vx:(Math.random()-.5) * .45,
+      vy:(Math.random()-.5) * .45,
 
-      size:Math.random()*2.3+.7,
+      size:base,
+      baseSize:base,
 
-      baseSize:Math.random()*2.3+.7,
-
-      phase:Math.random()*Math.PI*2
+      phase:Math.random() * Math.PI * 2
 
     });
 
@@ -2643,43 +2640,39 @@ function drawParticles(){
 
   for(let i=0;i<particles.length;i++){
 
-    const p =
-      particles[i];
+    const p = particles[i];
 
     p.phase += .008;
 
     p.x +=
       p.vx +
-      Math.cos(p.phase)*.06;
+      Math.cos(p.phase) * .06;
 
     p.y +=
       p.vy +
-      Math.sin(p.phase)*.06;
+      Math.sin(p.phase) * .06;
 
 
     if(p.x < -20)
-      p.x = width+20;
+      p.x = width + 20;
 
-    if(p.x > width+20)
+    if(p.x > width + 20)
       p.x = -20;
 
     if(p.y < -20)
-      p.y = height+20;
+      p.y = height + 20;
 
-    if(p.y > height+20)
+    if(p.y > height + 20)
       p.y = -20;
 
 
     if(mouse.active){
 
-      const dx =
-        p.x - mouse.x;
-
-      const dy =
-        p.y - mouse.y;
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
 
       const distance =
-        Math.sqrt(dx*dx + dy*dy);
+        Math.sqrt(dx * dx + dy * dy);
 
       const radius =
         window.innerWidth < 600
@@ -2689,7 +2682,7 @@ function drawParticles(){
       if(distance < radius){
 
         const force =
-          (radius-distance)/radius;
+          (radius - distance) / radius;
 
         const angle =
           Math.atan2(dy,dx);
@@ -2706,12 +2699,12 @@ function drawParticles(){
 
         p.size =
           p.baseSize +
-          force*3;
+          force * 3;
 
       }else{
 
         p.size +=
-          (p.baseSize-p.size)*.08;
+          (p.baseSize - p.size) * .08;
 
       }
 
@@ -2725,7 +2718,7 @@ function drawParticles(){
       p.y,
       p.size,
       0,
-      Math.PI*2
+      Math.PI * 2
     );
 
     ctx.fillStyle =
@@ -2736,22 +2729,18 @@ function drawParticles(){
 
     for(let j=i+1;j<particles.length;j++){
 
-      const q =
-        particles[j];
+      const q = particles[j];
 
-      const dx =
-        p.x-q.x;
-
-      const dy =
-        p.y-q.y;
+      const dx = p.x - q.x;
+      const dy = p.y - q.y;
 
       const dist =
-        Math.sqrt(dx*dx+dy*dy);
+        Math.sqrt(dx * dx + dy * dy);
 
       if(dist < 125){
 
         const opacity =
-          .11*(1-dist/125);
+          .11 * (1 - dist / 125);
 
         ctx.beginPath();
 
@@ -2768,7 +2757,7 @@ function drawParticles(){
         ctx.strokeStyle =
           `rgba(23,59,255,${opacity})`;
 
-        ctx.lineWidth=.7;
+        ctx.lineWidth = .7;
 
         ctx.stroke();
 
@@ -2787,30 +2776,29 @@ window.addEventListener(
   "mousemove",
   e=>{
 
-    mouse.x =
-      e.clientX;
-
-    mouse.y =
-      e.clientY;
-
-    mouse.active=true;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
 
   }
 );
+
 
 window.addEventListener(
   "mouseleave",
   ()=>{
 
-    mouse.active=false;
+    mouse.active = false;
 
   }
 );
+
 
 window.addEventListener(
   "resize",
   resizeCanvas
 );
+
 
 resizeCanvas();
 drawParticles();
@@ -2823,15 +2811,16 @@ drawParticles();
 const cursorLight =
   document.getElementById("cursorLight");
 
+
 window.addEventListener(
   "mousemove",
   e=>{
 
     cursorLight.style.left =
-      e.clientX+"px";
+      e.clientX + "px";
 
     cursorLight.style.top =
-      e.clientY+"px";
+      e.clientY + "px";
 
   }
 );
@@ -2853,44 +2842,44 @@ document
         card.getBoundingClientRect();
 
       const x =
-        e.clientX-rect.left;
+        e.clientX - rect.left;
 
       const y =
-        e.clientY-rect.top;
+        e.clientY - rect.top;
 
       const px =
-        x/rect.width;
+        x / rect.width;
 
       const py =
-        y/rect.height;
+        y / rect.height;
 
       const rotateY =
-        (px-.5)*14;
+        (px - .5) * 14;
 
       const rotateX =
-        (py-.5)*-14;
+        (py - .5) * -14;
 
       const moveX =
-        (px-.5)*5;
+        (px - .5) * 5;
 
       const moveY =
-        (py-.5)*5;
+        (py - .5) * 5;
 
       card.style.transform =
         `perspective(1000px)
          rotateX(${rotateX}deg)
          rotateY(${rotateY}deg)
-         translate3d(${moveX}px,${moveY-6}px,0)
+         translate3d(${moveX}px,${moveY - 6}px,0)
          scale(1.018)`;
 
       card.style.setProperty(
         "--mx",
-        `${px*100}%`
+        `${px * 100}%`
       );
 
       card.style.setProperty(
         "--my",
-        `${py*100}%`
+        `${py * 100}%`
       );
 
     }
@@ -2901,8 +2890,7 @@ document
     "mouseleave",
     ()=>{
 
-      card.style.transform =
-        "";
+      card.style.transform = "";
 
       card.style.setProperty(
         "--mx",
@@ -3009,11 +2997,11 @@ const certs = [
   [
     "NSSC 7",
     "1vW3MdvnIU-bhFOMuGnM9PTZc6pDaRWPh"
-  ]
+  ],
 
   [
     "PKU MUI VII",
-    "https://drive.google.com/file/d/1Sd_YxbZ1DO38Mb7Vp5LTF5Qi6Emqpb7V/view?usp=sharing"
+    "1Sd_YxbZ1DO38Mb7Vp5LTF5Qi6Emqpb7V"
   ]
 
 ];
@@ -3026,11 +3014,8 @@ const certGrid =
 certs.forEach(
   (item,index)=>{
 
-    const title =
-      item[0];
-
-    const id =
-      item[1];
+    const title = item[0];
+    const id = item[1];
 
     const previewURL =
       `https://drive.google.com/file/d/${id}/preview`;
@@ -3044,7 +3029,7 @@ certs.forEach(
     card.className =
       "cert interactive-card reveal " +
       (
-        index%2===0
+        index % 2 === 0
         ? "fade-left"
         : "fade-right"
       );
@@ -3070,7 +3055,7 @@ certs.forEach(
         <a
           href="${viewURL}"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
 
           Lihat Sertifikat
 
@@ -3085,6 +3070,8 @@ certs.forEach(
     `;
 
     certGrid.appendChild(card);
+
+    revealObserver.observe(card);
 
   }
 );
@@ -3108,7 +3095,8 @@ document.addEventListener(
 
       window.open(
         url,
-        "_blank"
+        "_blank",
+        "noopener,noreferrer"
       );
 
     }
@@ -3126,6 +3114,7 @@ const menu =
 
 const nav =
   document.getElementById("nav");
+
 
 menu.addEventListener(
   "click",
@@ -3168,13 +3157,14 @@ document
 const header =
   document.getElementById("header");
 
+
 window.addEventListener(
   "scroll",
   ()=>{
 
     header.classList.toggle(
       "scrolled",
-      window.scrollY>30
+      window.scrollY > 30
     );
 
   }
@@ -3194,12 +3184,13 @@ const roles = [
 
 ];
 
-let roleIndex=0;
-let charIndex=0;
-let deleting=false;
+let roleIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
 const typed =
   document.getElementById("typed");
+
 
 function typeEffect(){
 
@@ -3211,14 +3202,14 @@ function typeEffect(){
     typed.textContent =
       current.substring(
         0,
-        charIndex+1
+        charIndex + 1
       );
 
     charIndex++;
 
-    if(charIndex===current.length){
+    if(charIndex === current.length){
 
-      deleting=true;
+      deleting = true;
 
       setTimeout(
         typeEffect,
@@ -3239,17 +3230,17 @@ function typeEffect(){
     typed.textContent =
       current.substring(
         0,
-        charIndex-1
+        charIndex - 1
       );
 
     charIndex--;
 
-    if(charIndex===0){
+    if(charIndex === 0){
 
-      deleting=false;
+      deleting = false;
 
       roleIndex =
-        (roleIndex+1)%roles.length;
+        (roleIndex + 1) % roles.length;
 
     }
 
@@ -3272,6 +3263,7 @@ typeEffect();
 const aboutPhoto =
   document.getElementById("aboutPhoto");
 
+
 document
 .querySelectorAll(".photo-btn")
 .forEach(button=>{
@@ -3280,7 +3272,7 @@ document
     "click",
     ()=>{
 
-      aboutPhoto.style.opacity="0";
+      aboutPhoto.style.opacity = "0";
 
       setTimeout(
         ()=>{
@@ -3288,7 +3280,7 @@ document
           aboutPhoto.src =
             button.dataset.photo;
 
-          aboutPhoto.style.opacity="1";
+          aboutPhoto.style.opacity = "1";
 
         },
         150
@@ -3369,13 +3361,14 @@ document
 const topButton =
   document.getElementById("top");
 
+
 window.addEventListener(
   "scroll",
   ()=>{
 
     topButton.classList.toggle(
       "show",
-      window.scrollY>450
+      window.scrollY > 450
     );
 
   }
@@ -3409,24 +3402,25 @@ const navLinks =
     "nav a"
   );
 
+
 window.addEventListener(
   "scroll",
   ()=>{
 
-    let current="";
+    let current = "";
 
     sections.forEach(
       section=>{
 
         const top =
-          section.offsetTop-140;
+          section.offsetTop - 140;
 
         const bottom =
-          top+section.offsetHeight;
+          top + section.offsetHeight;
 
         if(
-          window.scrollY>=top &&
-          window.scrollY<bottom
+          window.scrollY >= top &&
+          window.scrollY < bottom
         ){
 
           current =
@@ -3443,8 +3437,8 @@ window.addEventListener(
         link.classList.toggle(
           "active",
 
-          link.getAttribute("href")
-          ==="#"+current
+          link.getAttribute("href") ===
+          "#" + current
         );
 
       }
@@ -3513,10 +3507,10 @@ Pesan:
 ${message}`;
 
     window.open(
-      "https://wa.me/6281314238496?text="
-      +
+      "https://wa.me/6281314238496?text=" +
       encodeURIComponent(text),
-      "_blank"
+      "_blank",
+      "noopener,noreferrer"
     );
 
   }
@@ -3573,3 +3567,4 @@ if(
 
 </body>
 </html>
+```
